@@ -5,7 +5,7 @@ HRESULT MainGame0630::init(void)
 {
 	GameNode::init(true);
 
-	IMAGEMANAGER->addImage("데드스페이스", "Resource/Images/BackGround/DeadSpace.bmp", WINSIZE_X, WINSIZE_Y);
+	IMAGEMANAGER->addFrameImage("데드스페이스", "Resource/Images/BackGround/DeadSpace.bmp", WINSIZE_X/2, WINSIZE_Y/2, );
 
 	_alphaA = 255;
 	
