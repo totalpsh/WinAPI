@@ -86,6 +86,9 @@
     <ClCompile Include="ImageManager.cpp">
       <Filter>2D Framework\FrameworkManager</Filter>
     </ClCompile>
+    <ClCompile Include="MainGame0703.cpp">
+      <Filter>ManagerClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -126,6 +129,9 @@
     </ClInclude>
     <ClInclude Include="ImageManager.h">
       <Filter>2D Framework\FrameworkManager</Filter>
+    </ClInclude>
+    <ClInclude Include="MainGame0703.h">
+      <Filter>ManagerClass</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

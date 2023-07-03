@@ -719,6 +719,90 @@ void GImage::setTransImage(const char* fileName)
     strcpy_s(_fileName, len + 1, fileName);
 }
 
+// 잘쓰면 카메라가 편해질 수 있다.
+void GImage::loopRender(HDC hdc, const LPRECT drawArea, int offsetX, int offsetY)
+{
+    // offset 값이 음수 인 경우 보정 작업
+    if (offsetX < 0)
+    {
+        offsetX = _imageInfo->width + (offsetX % _imageInfo->width);
+    }
+
+    if (offsetY < 0)
+    {
+        offsetY = _imageInfo->height + (offsetY % _imageInfo->height);
+    }
+
+    // 그려질 복사 영역 세팅 -> 이동할 다음 위치의 맵을 미리 복사
+    RECT rcSour;
+    int sourWidth;
+    int sourHeight;
+
+    // 그려지는 DC 영역 (화면 크기)
+    RECT rcDest;
+
+    // 렉트 인자값을 포인터로 받아오기 때문에 값을 받아서 사용한다
+    // 그려야 할 전체 영역
+    int drawAreaX = drawArea->left;
+    int drawAreaY = drawArea->top;
+    int drawAreaW = drawArea->right - drawArea->left;
+    int drawAreaH = drawArea->bottom - drawArea->top;
+
+    // 세로 루프
+    for (int y = 0; y < drawAreaH; y += sourHeight)
+    {
+        // 소스 영역의 높이 계산
+        rcSour.top = (y + offsetY) % _imageInfo->height;
+        rcSour.bottom = _imageInfo->height;
+        sourHeight = rcSour.bottom - rcSour.top;
+
+
+        // 예외 처리 소스의 역역이 그리는 화면을 넘어갔다면 (화면 밖으로 나갔다면)
+        if (y + sourHeight > drawAreaH)
+        {
+            // 화면이 넘어간 만큼 바텀값을 되돌려준다 -> 화면을 이전 상태로 리셋
+            rcSour.bottom -= (y + sourHeight) - drawAreaH;
+            sourHeight = rcSour.bottom - rcSour.top;
+        }
+
+        // 그려질 영역 세팅
+        rcDest.top = y + drawAreaY;
+        rcDest.bottom = rcDest.top + sourHeight;
+
+        // 가로 루프
+        for (int x = 0; x < drawAreaW; x += sourWidth)
+        {
+            // 소스 영역의 높이 계산
+            rcSour.left = (x + offsetX) % _imageInfo->width;
+            rcSour.right = _imageInfo->width;
+            sourWidth = rcSour.right - rcSour.left;
+
+
+            // 예외 처리 소스의 역역이 그리는 화면을 넘어갔다면 (화면 밖으로 나갔다면)
+            if (x + sourWidth > drawAreaW)
+            {
+                // 화면이 넘어간 만큼 바텀값을 되돌려준다 -> 화면을 이전 상태로 리셋
+                rcSour.right -= (x + sourWidth) - drawAreaW;
+                sourWidth = rcSour.right - rcSour.left;
+            }
+
+            // 그려질 영역 세팅
+            rcDest.left = x + drawAreaX;
+            rcDest.right = rcDest.left + sourWidth;
+
+            render(hdc, rcDest.left, rcDest.top,
+                rcSour.left, rcSour.top,
+                sourWidth, sourHeight);
+
+        }
+    }
+}
+
+void GImage::loopAlphaRender(HDC hdc, const LPRECT drawArea, int offsetX, int offsetY, BYTE alpha)
+{
+
+}
+
 // 더블 버퍼와 백버퍼가 있다
 
 /*

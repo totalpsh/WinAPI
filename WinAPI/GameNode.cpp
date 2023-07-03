@@ -2,17 +2,17 @@
 #include "GameNode.h"
 
 
-HRESULT GameNode::init(void)
-{
-	SetTimer(_hWnd, 1, 10, NULL);
-
-	RND->init();
-	KEYMANAGER->init();
-
-	//this->setDoubleBuffer();
-
-	return S_OK;
-}
+//HRESULT GameNode::init(void)
+//{
+//	/*SetTimer(_hWnd, 1, 10, NULL);
+//
+//	RND->init();
+//	KEYMANAGER->init();*/
+//
+//	//this->setDoubleBuffer();
+//
+//	return S_OK;
+//}
 
 HRESULT GameNode::init(bool managerInit)
 {

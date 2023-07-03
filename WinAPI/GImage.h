@@ -129,6 +129,11 @@ public:
 
     void setTransImage(const char* fileName);
 
+    // 루프 렌더
+    // ㄴ 반복 / 이미지를 밀고 당기는 방식
+    void loopRender(HDC hdc, const LPRECT drawArea, int offsetX, int offsetY);
+    void loopAlphaRender(HDC hdc, const LPRECT drawArea, int offsetX, int offsetY, BYTE alpha);
+
     // 인라인 함수
     inline HDC getMemDC(void) { return _imageInfo->hMemDC; }
 

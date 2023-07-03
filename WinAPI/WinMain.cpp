@@ -39,6 +39,7 @@
 #include "Stdafx.h"
 #include "MainGame.h";
 #include "MainGame0630.h"
+#include "MainGame0703.h"
 
 // 전역변수
 
@@ -109,12 +110,12 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
  */
 
 
-// 사각형에 중심점 만들기
-//RECT RectMakeCenter(int x, int y, int width, int height)
-//{
-//    RECT rc = { x - width / 2, y - height / 2, x + width / 2, y + height / 2 };
-//    return rc;
-//}
+ // 사각형에 중심점 만들기
+ //RECT RectMakeCenter(int x, int y, int width, int height)
+ //{
+ //    RECT rc = { x - width / 2, y - height / 2, x + width / 2, y + height / 2 };
+ //    return rc;
+ //}
 
 RECT rc;
 RECT _rc1, _rc2;
@@ -122,19 +123,19 @@ RECT _rc1, _rc2;
 int centerX;
 int centerY;
 
-MainGame0630* _mg;
+MainGame0703* _mg;
 
 
 int APIENTRY WinMain(HINSTANCE hInstance,
-        HINSTANCE hPrevInstance,
-        LPSTR _lpszCmdParam,
-        int nCmdShow)
+    HINSTANCE hPrevInstance,
+    LPSTR _lpszCmdParam,
+    int nCmdShow)
 
 
-{   
-    _mg = new MainGame0630;
-   
-    
+{
+    _mg = new MainGame0703;
+
+
     // 인스턴스를 전역변수에 담는다.
     _hInstance = hInstance;
 
@@ -148,15 +149,15 @@ int APIENTRY WinMain(HINSTANCE hInstance,
      2. 메세지 루프
 
 
-    
+
     */
 
 
     // 1 - 1. 윈도우 창 구조체 선언 및 초기화
     //WDNCLASS: 이 구조체는 윈도우즈 운영체제 에서 윈도우 생성을 명령하기 위해서 커스텀한 윈도우를 식별할 수 있는 정보 등을 기록하는 역할 수행
     WNDCLASS wndClass;
-    
-    
+
+
     wndClass.cbClsExtra = 0;                                            // 클래스 여분 메모리 -> 게임에서는 동적할당으로 인해 메모리 할당과 삭제를 자주 하므로 굳이 필요하지 않다.
     wndClass.cbWndExtra = 0;                                            // 윈도우 여분 메모리 ->
     wndClass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);       // 백그라운드 -> 
@@ -165,7 +166,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
     wndClass.hInstance = hInstance;                                     // 윈도우를 소요한 프로그램의 식별자 정보
     wndClass.lpfnWndProc = (WNDPROC)WndProc;                            //윈도우 프로시저
     wndClass.lpszClassName = WINNAME;                                //클래스 이름(식별자 정보)
-    wndClass.lpszMenuName = NULL;             
+    wndClass.lpszMenuName = NULL;
     // 메뉴 이름
     wndClass.style = CS_HREDRAW | CS_VREDRAW;                           // 윈도우 스타일(다시 그리기 정보)
 
@@ -173,12 +174,31 @@ int APIENTRY WinMain(HINSTANCE hInstance,
     // 디바이스의 세팅 환경이기 때문에 프로그램의 시작과 동시에 실행이 더야되고 프로그램이 종료가 되기 전까지는 유지되어야 하는 기능들이라 클래스나 함수의 기능으로 구현하지 않고
     // 메인 맨 위에 위치해서 만들어 놓는 것이다.
     // 메인도 함수중 하나니까 기능이 스택에 쌓이는데 다른 클래스나 함수들과 같이 스택에 쌓이면 종료를 하는 과정에서도 스택의 특성상 순서대로 종료가 되므로 굳이 기능으로 따로 뺀게 아니다.
-     
-   
+
+
     // 1- 2. 윈도우 클래스 등록
     RegisterClass(&wndClass);
 
-    // 1 - 3. 화면에 보여줄 윈도우 창 생성
+
+#ifdef FULLSCREEN 
+    // 디바이스 모드 구조체 (화면 디스플레이 관련 구조체)
+    DEVMODE dm;
+    ZeroMemory(&dm, sizeof(DEVMODE));
+
+    dm.dmSize = sizeof(DEVMODE);
+    dm.dmBitsPerPel = 32; //32비트 트루컬러
+    dm.dmPanningWidth = 1580;      //가로
+    dm.dmPelsHeight = 1020;         //세로
+    dm.dmDisplayFrequency = 60; // 주사율
+
+    // 필드 설정
+    dm.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT | DM_DISPLAYFREQUENCY;
+
+    // 종료되면 디스플레이 세팅을 원래대로 돌린다.
+    if (ChangeDisplaySettings(&dm, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL)
+    {
+        ChangeDisplaySettings(&dm, 0);
+    }
 
     _hWnd = CreateWindow
     (
@@ -196,6 +216,24 @@ int APIENTRY WinMain(HINSTANCE hInstance,
                                 //ㄴ 필요에 의해서 사용하기도 하지만 지금은 NULL을 쓸것이다.
     );
 
+#else 
+    // 1 - 3. 화면에 보여줄 윈도우 창 생성
+    _hWnd = CreateWindow
+    (
+        WINNAME,             // 윈도우 클래스 식별자
+        WINNAME,             // 윈도우 타이틀 바 이름
+        WINSTYLE,    // 윈도우 스타일
+        WINSTART_X,                    // 윈도우 화면 X좌표
+        WINSTART_Y,                    // 윈도우 화면 Y좌표
+        WINSIZE_X,                    // 윈도우 화면 가로 크기
+        WINSIZE_Y,                    // 윈도우 화면 세로 크기
+        NULL,                   // 부모 윈도우 -> GetDesktopWindow
+        (HMENU)NULL,            // 메뉴 핸들
+        hInstance,              // 인스턴스 지정
+        NULL                    //윈도우의 자식 윈도우를 생성하면 지정하고 그렇지 않다면 NULL을 잡아라
+                                //ㄴ 필요에 의해서 사용하기도 하지만 지금은 NULL을 쓸것이다.
+    );
+#endif
     // 클라이언트 영역의 사이즈를 정확히 잡아주기 위해
     setWindowSize(WINSTART_X, WINSTART_Y, WINSIZE_X, WINSIZE_Y);
 

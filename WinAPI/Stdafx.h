@@ -147,8 +147,25 @@ ID2D1HwndRenderTarget* _ID2DRenderTarget = nullptr;
 #define KEYMANAGER KeyManager::getSingleton()
 #define IMAGEMANAGER ImageManager::getSingleton()
 
-// 매크로 (윈도우창 초기화)
+// 전체화면
+
+#define FULLSCREEN
+
 #define WINNAME		(LPTSTR)(TEXT("WindowsAPI"))
+
+#ifdef FULLSCREEN 
+
+#define WINSTART_X	0
+#define WINSTART_Y	0
+// GetSystemMetrics(): 인자로 전달되는 시스템 설정 정보를 반환
+// ㄴ SM_CXSCREEN + SM_CYSCREEN = 현재 화면 해상도 x축y축 반환
+#define WINSIZE_X   GetSystemMetrics(SM_CXSCREEN)
+#define WINSIZE_Y	 GetSystemMetrics(SM_CYSCREEN)
+#define WINSTYLE WS_POPUPWINDOW | WS_MAXIMIZE
+
+
+#elif
+// 매크로 (윈도우창 초기화)
 #define WINSTART_X	400
 #define WINSTART_Y	100
 #define WINSIZE_X   1280
@@ -156,6 +173,8 @@ ID2D1HwndRenderTarget* _ID2DRenderTarget = nullptr;
 // WS_CAPTION : 타이틀바를 가지기 위한 옶견
 // WS_SYSMENU: 제목 표시줄에 컨트롤 메뉴 상자 창
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU
+
+#endif
 
 // 매크로 함수 (클래스에서 동적할당 된 부분 해제)
 #define SAFE_DELETE(p)			{if(p) delete (p); (p) = nullptr;}
