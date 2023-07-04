@@ -89,6 +89,9 @@
     <ClCompile Include="MainGame0703.cpp">
       <Filter>ManagerClass</Filter>
     </ClCompile>
+    <ClCompile Include="MainGame0704.cpp">
+      <Filter>ManagerClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -131,6 +134,9 @@
       <Filter>2D Framework\FrameworkManager</Filter>
     </ClInclude>
     <ClInclude Include="MainGame0703.h">
+      <Filter>ManagerClass</Filter>
+    </ClInclude>
+    <ClInclude Include="MainGame0704.h">
       <Filter>ManagerClass</Filter>
     </ClInclude>
   </ItemGroup>
