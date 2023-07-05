@@ -69,7 +69,6 @@
     <ClCompile Include="WinMain.cpp">
       <Filter>2D Framework</Filter>
     </ClCompile>
-    <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="GameNode.cpp">
       <Filter>2D Framework\GameCore</Filter>
     </ClCompile>
@@ -92,6 +91,17 @@
     <ClCompile Include="MainGame0704.cpp">
       <Filter>ManagerClass</Filter>
     </ClCompile>
+    <ClCompile Include="SecondScene.cpp" />
+    <ClCompile Include="MainGame0705.cpp">
+      <Filter>ManagerClass</Filter>
+    </ClCompile>
+    <ClCompile Include="FontManager.cpp">
+      <Filter>2D Framework\FrameworkManager</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyManager.cpp">
+      <Filter>2D Framework\FrameworkManager</Filter>
+    </ClCompile>
+    <ClCompile Include="StartScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -115,7 +125,6 @@
     <ClInclude Include="IWindowMessageHandler.h">
       <Filter>2D Framework\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="KeyManager.h" />
     <ClInclude Include="GameNode.h">
       <Filter>2D Framework\GameCore</Filter>
     </ClInclude>
@@ -139,6 +148,17 @@
     <ClInclude Include="MainGame0704.h">
       <Filter>ManagerClass</Filter>
     </ClInclude>
+    <ClInclude Include="SecondScene.h" />
+    <ClInclude Include="MainGame0705.h">
+      <Filter>ManagerClass</Filter>
+    </ClInclude>
+    <ClInclude Include="FontManager.h">
+      <Filter>2D Framework\FrameworkManager</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyManager.h">
+      <Filter>2D Framework\FrameworkManager</Filter>
+    </ClInclude>
+    <ClInclude Include="StartScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinAPI.rc" />

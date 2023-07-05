@@ -143,6 +143,9 @@
   <ItemGroup>
     <ClCompile Include="C3DMatrix.cpp" />
     <ClCompile Include="C3DVector.cpp" />
+    <ClCompile Include="FontManager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="GameNode.cpp" />
     <ClCompile Include="GImage.cpp" />
     <ClCompile Include="homework_01.cpp">
@@ -175,10 +178,15 @@
     <ClCompile Include="MainGame0703.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="MainGame0704.cpp" />
+    <ClCompile Include="MainGame0704.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="MainGame0705.cpp" />
     <ClCompile Include="MOLE.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="SecondScene.cpp" />
+    <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
@@ -190,6 +198,9 @@
     <ClInclude Include="C3DMatrix.h" />
     <ClInclude Include="C3DVector.h" />
     <ClInclude Include="CommonMacroFunction.h" />
+    <ClInclude Include="FontManager.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="GameNode.h" />
     <ClInclude Include="GImage.h" />
     <ClInclude Include="ImageManager.h" />
@@ -204,13 +215,18 @@
     <ClInclude Include="MainGame0703.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="MainGame0704.h" />
+    <ClInclude Include="MainGame0704.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="MainGame0705.h" />
     <ClInclude Include="MOLE.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="RandomFunction.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="SecondScene.h" />
     <ClInclude Include="SingletonBase.h" />
+    <ClInclude Include="StartScene.h" />
     <ClInclude Include="Stdafx.h" />
   </ItemGroup>
   <ItemGroup>

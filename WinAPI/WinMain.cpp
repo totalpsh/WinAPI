@@ -41,6 +41,7 @@
 #include "MainGame0630.h"
 #include "MainGame0703.h"
 #include "MainGame0704.h"
+#include "MainGame0705.h"
 
 // 전역변수
 
@@ -124,7 +125,7 @@ RECT _rc1, _rc2;
 int centerX;
 int centerY;
 
-MainGame0704* _mg;
+MainGame0705* _mg;
 
 
 int APIENTRY WinMain(HINSTANCE hInstance,
@@ -134,7 +135,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 
 
 {
-    _mg = new MainGame0704;
+    _mg = new MainGame0705;
 
 
     // 인스턴스를 전역변수에 담는다.
