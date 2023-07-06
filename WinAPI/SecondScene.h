@@ -1,9 +1,12 @@
 #pragma once
 #include "GameNode.h"
+#include "TempSoundScene.h"
 
 class SecondScene : public GameNode
 {
 private:
+	TempSoundScene* _tempSound;
+
 	int _alphaA;
 	int _isAlphaIncrese;
 

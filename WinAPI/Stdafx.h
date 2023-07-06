@@ -141,11 +141,13 @@ ID2D1HwndRenderTarget* _ID2DRenderTarget = nullptr;
 #include "RandomFunction.h"
 #include "KeyManager.h"
 #include "ImageManager.h"
+#include "TempSoundManager.h"
 
 // ΩÃ±€≈Ê
 #define RND RandomFunction::getSingleton()
 #define KEYMANAGER KeyManager::getSingleton()
 #define IMAGEMANAGER ImageManager::getSingleton()
+#define TEMPSOUNDMANAGER TempSoundManager::getSingleton()
 
 // ¿¸√º»≠∏È
 

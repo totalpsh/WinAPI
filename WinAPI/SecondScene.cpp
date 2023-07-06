@@ -8,6 +8,9 @@ HRESULT SecondScene::init(void)
     // SetBkMode : 텍스트 버퍼등을 투명하게 해주는 함수
     // SetBkMode(getMemDC(), TRANSPARENT);
 
+    _tempSound = new TempSoundScene;
+    _tempSound->init();
+
     _alphaA = 0;
     _isAlphaIncrese = false;
 
@@ -20,15 +23,18 @@ HRESULT SecondScene::init(void)
 
 void SecondScene::release(void)
 {
+    SAFE_DELETE(_tempSound)
 }
 
 void SecondScene::update(void)
 {
+    _tempSound->update();
     _bgSpeed += 4;
 }
 
 void SecondScene::render(void)
 {
+    _tempSound->render();
 
     IMAGEMANAGER->loopRender("배경 루프", getMemDC(), &RectMake(0, 0, WINSIZE_X, WINSIZE_Y), _bgSpeed, 0);
     //IMAGEMANAGER->loopRender("트랙", getMemDC(), &RectMake(0, 0, WINSIZE_X, WINSIZE_Y), 0, _bgSpeed);

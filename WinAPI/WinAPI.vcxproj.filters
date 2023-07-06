@@ -102,6 +102,9 @@
       <Filter>2D Framework\FrameworkManager</Filter>
     </ClCompile>
     <ClCompile Include="StartScene.cpp" />
+    <ClCompile Include="TempSoundManager.cpp" />
+    <ClCompile Include="MainGame0706.cpp" />
+    <ClCompile Include="TempSoundScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h">
@@ -159,6 +162,9 @@
       <Filter>2D Framework\FrameworkManager</Filter>
     </ClInclude>
     <ClInclude Include="StartScene.h" />
+    <ClInclude Include="TempSoundManager.h" />
+    <ClInclude Include="MainGame0706.h" />
+    <ClInclude Include="TempSoundScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinAPI.rc" />
